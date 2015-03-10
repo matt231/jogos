@@ -5,17 +5,16 @@ html {
 	background: #f1f2f2;
 }
 #velha{
-	width: 395px;
+	width:31%;
 	height: auto;
 	background: #fffff;
 	background: #ccc;
 	margin: 120px auto;
-	padding: 40px 40px 40px;
+	padding: 2.5em 2.5em 2.5em;
     background: #4a4a4c #e6e7e8;
 	border-radius: 3px;
 	
 }
-
 
 .styled-button-1{
 	background:#f1f2f2;

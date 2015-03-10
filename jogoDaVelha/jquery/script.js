@@ -4,11 +4,11 @@ $(document).ready(function() {
         var total = 0;
 		var x = [];    
 		function creatTable(){
-			for (var i = 1; i<4; i++) {
+			for (var i = 1; i<8; i+=3) {
 				var row = "<tr>"+
 				           '<td><button class="styled-button-1" id="'+i+'">'+i+'</button></td>' +
-				           '<td><button class="styled-button-1" id="'+(i+3)+'">'+(i+3)+'</button></td>' +
-				           '<td><button class="styled-button-1" id="'+(i+6)+'">'+(i+6)+'</button></td>' +
+				           '<td><button class="styled-button-1" id="'+(i+1)+'">'+(i+1)+'</button></td>' +
+				           '<td><button class="styled-button-1" id="'+(i+2)+'">'+(i+2)+'</button></td>' +
 				           '</tr>';
 				$("#table1").append(row);
 		    }
@@ -22,11 +22,15 @@ $(document).ready(function() {
                   $(this).off('click');
                   x[ $(this).attr("id") ] = 'O';
                    
-           	   }else{
+           	   }else if(total%2==1 && total!=9){
            	   	$(this).text("X");
            	   	$(this).off('click');  
            	   	 x[ $(this).attr("id") ] = 'X'; 
            	   }
+           	   else{
+           	   	alert("O Jogo terminou empate!!!");
+           	   }
+
            	   var vencedor = 0;
            	   vencedor = logica();
            	   	if(vencedor==1){
@@ -36,33 +40,31 @@ $(document).ready(function() {
            	   		alert("Jogador 2, vencedor!!!");
            	   		$('button').off('click');
            	   	} 
-           }); 	
+           }); 		
 		};
 		function logica(){
-				for (var j = 1; j < 8; j+=3) {
-                  	console.log(j);
-                  	if(x[j]==="X" && x[j+1]==="X" && x[j+2]==="X") {
+			    for (var j = 1; j<4; j++) {
+			    	console.log(j);
+			    	if(x[j]==="X" && x[j+1]==="X" && x[j+2]==="X") {
                     	console.log("Jogador 1 Ganhou");
                     	return 1;	
 				    }else if (x[j]==="O" && x[j+1]==="O" && x[j+2]==="O") {
-
+				    	return 2;
+				    }else if (x[j]==="X" && x[j+3]==="X" && x[j+6]==="X") {
+				    	return 1;
+				    }else if (x[j]==="O" && x[j+3]==="O" && x[j+6]==="O") {
+				    	return 2;
+				    }else if (x[j+2]==="X" && x[j+4]==="X" && x[j+6]==="X") {
+				    	return 1;
+				    }else if (x[j+2]==="O" && x[j+4]==="O" && x[j+6]==="O") {
+				    	return 2;
+				    }else if (x[j]==="X" && x[j+4]==="X" && x[j+8]==="X") {
+				    	return 1;
+				    }else if (x[j]==="O" && x[j+4]==="O" && x[j+8]==="O") {
 				    	return 2;
 				    }
-					for (var i = 1; i < 4; i++) {
-						if(x[i]==="X" && x[i+3]==="X" && x[i+6]==="X") {							
-		                    console.log("Jogador 1 Ganhou");	
-		                    return 1;
-						}else if (x[i]==="O" && x[i+3]==="O" && x[i+6]==="O") {
-
-							console.log("Jogador 2 Ganhou");	
-							return 2;
-						}
-					}
-					
-			    }
-			    
-			
-			
+			    	
+			    }		
 		};
         
 
